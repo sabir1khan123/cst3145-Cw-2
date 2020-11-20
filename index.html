@@ -51,4 +51,29 @@ html>
                         </a>
                     </div>
                 </div>
+                <div class="subjects">
+                    <div v-for="(d, i) in data">
+                        <div class="subject">
+                            <div class="subject-top">
+                                <div>
+                                    <h4>Subject</h4>
+                                    <p> {{ d.subject }}</p><br>
+                                    <h4>Price</h4>
+                                    <p> £{{ d.price }}/h</p><br>
+                                    <h4>Location</h4>
+                                    <p> {{ d.location }}</p><br>
+                                    <h4>Available</h4>
+                                    <p> {{ d.available }} spot(s)</p><br>
+                                </div>
+                                <i class="fa fa-4x" :class="d.fa"></i>
+                            </div>
+                            <button v-if="d.available > 0" class="cart" @click="add_to_cart(i)"><i class="fa fa-shopping-cart"></i></button>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        </body>
+        </html>
         
