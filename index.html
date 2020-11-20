@@ -6,4 +6,49 @@ html>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body>
+        <div id="home">
+            <h1 class="title">Welcome on the tutoring website</h1>
+            <h3 class="title">Choose classes, add them to your cart and proceed to checkout</h3><br>
+            <div class="main">
+                <div class="sidebar">
+                    <h3>Sort by ({{sort}}-<span v-if="direction==1">asc</span><span v-else="">desc</span>)</h3>
+                    <label for="subject">
+                        <input type="radio" id="subject" value="subject" v-model="sort">
+                        Subject
+                    </label><br>
+
+                    <label for="location">
+                        <input type="radio" id="location" value="location" v-model="sort">
+                        Location
+                    </label><br>
+
+                    <label for="price">
+                        <input type="radio" id="price" value="price" v-model="sort">
+                        Price
+                    </label><br>
+
+                    <label for="available">
+                        <input type="radio" id="available" value="available" v-model="sort">
+                        Available
+                    </label><br>
+
+                    <br>
+
+                    <label for="ascending">
+                        <input type="radio" id="ascending" value="1" v-model="direction">
+                        Ascending
+                    </label><br>
+                    
+                    <label for="descending">
+                        <input type="radio" id="descending" value="-1" v-model="direction">
+                        Descending
+                    </label><br>
+
+                    <div class="cart" v-if="cart && cart.length>0">
+                        <h3>Cart ({{cart.length}})</h3>
+                        <a href="./checkout.html">
+                            <i class="fa fa-shopping-cart fa-4x"></i><br>Checkout
+                        </a>
+                    </div>
+                </div>
         
