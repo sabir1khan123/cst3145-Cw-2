@@ -30,3 +30,20 @@
                         </div>
                         <button class="cart" @click="remove_from_cart(i)"><i class="fa fa-times"></i></button>
                     </div>
+
+                </div>
+
+                <h3>Checkout</h3>
+
+                <label>Name </label><input type="text" v-model="name">
+                <label>Phone </label><input type="phone"  v-model="phoneNumber">
+                
+                <button v-if="validName(name) && validPhoneNumber(phoneNumber)" @click="checkout">Checkout</button>
+            </div>
+            <div v-else>
+                <h1>Checkout successful</h1>
+                <h3>Thank you, {{name}}. Your checkout was successful.</h3>
+                <p>Your Name: {{name}}<br>
+                    Your Phone Number: {{phoneNumber}}</p>
+            </div>
+        </div>
