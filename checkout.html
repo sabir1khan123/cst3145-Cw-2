@@ -47,3 +47,47 @@
                     Your Phone Number: {{phoneNumber}}</p>
             </div>
         </div>
+
+        <script src="./scripts/vue.js"></script>
+        <script>
+            var checkout = new Vue({
+                el: '#checkout',
+                data: {
+                    name: "",
+                    phoneNumber: "",
+                    cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : [],
+                    checkoutSuccessful: false
+                },
+                methods: {
+                    cart: function(){
+                        localStorage.setItem("cart", JSON.stringify(this.cart))
+                    },
+                    remove_from_cart: function(i){
+                        this.cart.splice(i, 1);
+                        localStorage.setItem("cart", JSON.stringify(this.cart))
+                    },
+                    validName: function(name){
+                        if(name){
+                            if(name.match(/^[a-zA-Z]+$/)){
+                                return true;
+                            }
+                        }
+                        return false;
+                    },
+                    validPhoneNumber: function(phoneNumber){
+                        if(phoneNumber){
+                            if(Number.parseInt(phoneNumber)){
+                                return true;
+                            }
+                        }
+                        return false;
+                    },
+                    checkout: function(){
+                        this.checkoutSuccessful = true;
+                    }
+                }
+            })
+
+        </script>
+    </body>
+</html>
