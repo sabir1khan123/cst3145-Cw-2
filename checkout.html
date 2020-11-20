@@ -5,3 +5,28 @@
     <link rel="stylesheet" href="./styles/checkout.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+<body>
+    <div id="checkout">
+        <div v-if="!checkoutSuccessful">
+            <h1 class="title">Your cart is ready for checkout</h1>
+            <h3 class="title">Verify it, delete any unwanted items, fill the form below, and checkout</h3><br>
+            <a href="./home.html">Back to selection</a>
+            <h3>Your Cart</h3>
+            <div class="subjects">
+                <div v-for="(d, i) in cart">
+                    <div class="subject">
+                        <div class="subject-top">
+                            <div>
+                                <h4>Subject</h4>
+                                <p> {{ d.subject }}</p><br>
+                                <h4>Price</h4>
+                                <p>£{{ d.price }}</p><br>
+                                <h4>Location</h4>
+                                <p> {{ d.location }}</p><br>
+                                <h4>Available</h4>
+                                <p> {{ d.available }}</p><br>
+                            </div>
+                            <i class="fa fa-4x" :class="d.fa"></i>
+                        </div>
+                        <button class="cart" @click="remove_from_cart(i)"><i class="fa fa-times"></i></button>
+                    </div>
