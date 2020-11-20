@@ -73,7 +73,60 @@ html>
                     </div>
                 </div>
             </div>
-        </div>
-        </body>
-        </html>
+
+        <script src="./scripts/vue.js"></script>
+        <script src="./scripts/data.js"></script>
+        <script>
+            var home = new Vue({
+                el: '#home',
+                data: {
+                    data: data,
+                    sort: "subject",
+                    direction: 1,
+                    cart: localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []
+                },
+                methods: {
+                    order: function () {
+                        app.lessons.sort((a, b) => {
+                            return a.price - b.price;
+                        });
+                    },
+                    add_to_cart: function (i) {
+                        this.data[i].available -= 1;
+                        this.cart.push(this.data[i])
+                    }
+                },
+                watch: {
+                    cart: function(){
+                        localStorage.setItem("cart", JSON.stringify(this.cart))
+                    },
+                    sort: function() {
+                        this.data = this.data.sort((obj1, obj2) => {
+                            if (obj1[this.sort] < obj2[this.sort]){
+                                return this.direction*-1;
+                            }
+                            if (obj1[this.sort] > obj2[this.sort]){
+                                return this.direction*1;
+                            }
+                            return 0;
+                        });
+                    },
+                    direction: function() {
+                        this.data = this.data.sort((obj1, obj2) => {
+                            if (obj1[this.sort] < obj2[this.sort]){
+                                return this.direction*-1;
+                            }
+                            if (obj1[this.sort] > obj2[this.sort]){
+                                return this.direction*1;
+                            }
+                            return 0;
+                        });
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
+            
+       
         
